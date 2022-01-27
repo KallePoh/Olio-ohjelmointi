@@ -7,7 +7,7 @@ class Olento:
         self.rohkeus = random.randint(4, 8)
         self.katseen_voima = random.randint(2, 4)
 
-    def arvo_hurraus(self)
+    def arvo_hurraus(self):
         pass
 
     """
@@ -42,8 +42,7 @@ class Peikko(Olento):
     def __init__(self):
         """Konstruktori."""
         self.nimi = self._arvo_sanat(self.NIMITAVUT, 3, "-")
-        self.rohkeus = random.randint(4, 8)
-        self.katseen_voima = random.randint(2, 4)
+        super().__init__()
 
     def _arvo_sanat(self, tavut, n, erotin, p=0.5):
         """Muodostaa satunnaisen tekstin annetuista tavuista.
@@ -78,12 +77,19 @@ class Peikko(Olento):
 
 
 class Vuorenpeikko(Peikko):
-    pass
+    VUORENPEIKKO_HUUDAHDUKSET = ("Dza", "Gra", "Gur", "Rah", "Urgh", "Ra")
+    VUORENPEIKKO_NIMET = ("Ur", "Gar", "Grah", "Gur", "Kan",)
+    def __init__(self):
+        super().__init__()
+    
+    
 
 
 class Luolapeikko(Peikko):
-    pass
-
+    LUOLAPEIKKO_HUUDAHDUKSET = ("Agh", "Ugh", "Ourgh", "Drar", "Brar",)
+    LUOLAPEIKKO_NIMET = ("Kazah", "Bar", "Bazh", "Ragh", "Rudz")
+    def __init__(self):
+        super().__init__()
 
 class Sankari(Olento):
     """Luokka, joka kuvaa Sankarin.
@@ -99,6 +105,7 @@ class Sankari(Olento):
     
     def __init__(self, nimi):
         self.nimi = nimi
+        super().__init__()
         
 
     
