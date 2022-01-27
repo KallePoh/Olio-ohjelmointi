@@ -3,18 +3,22 @@ import time
 
 
 class Olento:
-    pass
-
+    def __init__(self):
+        self.rohkeus = random.randint(4, 8)
+        self.katseen_voima = random.randint(2, 4)
+    """
+    :ivar rohkeus: olennon rohkeus, arvotaan
+    :type rohkeus: int
+    :ivar katseen_voima: olennon katseen voimakkuus, arvotaan
+    :type katseen_voima: int
+    """
 
 class Peikko(Olento):
     """Luokka, joka kuvaa Peikon.
 
     :ivar nimi: peikon nimi, arvotaan
     :type nimi: str
-    :ivar rohkeus: peikon rohkeus, arvotaan
-    :type rohkeus: int
-    :ivar katseen_voima: peikon katseen voimakkuus, arvotaan
-    :type katseen_voima: int
+    
     
     Julkiset metodit
         arvo_hurraus()
@@ -138,10 +142,7 @@ class Sankari(Olento):
 
     :ivar nimi: sankarin nimi, kysytään käyttäjältä
     :type nimi: str
-    :ivar rohkeus: sankarin rohkeus, arvotaan
-    :type rohkeus: int
-    :ivar katseen_voima: sankarin katseen voimakkuus, arvotaan
-    :type katseen_voima: int
+    
     
     Julkiset metodit
         arvo_hurraus()
@@ -150,8 +151,7 @@ class Sankari(Olento):
     
     def __init__(self, nimi):
         self.nimi = nimi
-        self.rohkeus = random.randint(4, 8)
-        self.katseen_voima = random.randint(2, 4)
+        
 
     
 
