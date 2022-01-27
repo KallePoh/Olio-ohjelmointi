@@ -6,12 +6,24 @@ class Olento:
     def __init__(self):
         self.rohkeus = random.randint(4, 8)
         self.katseen_voima = random.randint(2, 4)
+
+    def arvo_hurraus(self)
+        pass
+
+    """
+    Palauttaa satunnaisen hurraushuudahduksen.
+
+    :return: hurraava huudahdus
+    :rtype: str
+    """
     """
     :ivar rohkeus: olennon rohkeus, arvotaan
     :type rohkeus: int
     :ivar katseen_voima: olennon katseen voimakkuus, arvotaan
     :type katseen_voima: int
     """
+
+
 
 class Peikko(Olento):
     """Luokka, joka kuvaa Peikon.
@@ -65,8 +77,41 @@ class Peikko(Olento):
         return self._arvo_sanat(self.RIEMUTAVUT, 8, " ", 0.7)
 
 
-### Kirjoita luokka Sankari tähän.
+class Vuorenpeikko(Peikko):
+    pass
 
+
+class Luolapeikko(Peikko):
+    pass
+
+
+class Sankari(Olento):
+    """Luokka, joka kuvaa Sankarin.
+
+    :ivar nimi: sankarin nimi, kysytään käyttäjältä
+    :type nimi: str
+    
+    
+    Julkiset metodit
+        arvo_hurraus()
+    """
+    
+    
+    def __init__(self, nimi):
+        self.nimi = nimi
+        
+
+    
+
+    def arvo_hurraus(self):
+        """
+        Palauttaa satunnaisen hurraushuudahduksen.
+
+        :return: hurraava huudahdus
+        :rtype: str
+        """
+        HURRAUKSET = ["Jes!", "Let's Go1", "Hurraa!", "Jeee!", "Jippii!"]
+        return random.choice(HURRAUKSET)
 
 def hurraa(olio):
     """Tulostaa satunnaisen hurrauksen annetulle oliolle.
@@ -137,33 +182,7 @@ def taistele(vasen, oikea):
         return oikea
 
 
-class Sankari(Olento):
-    """Luokka, joka kuvaa Sankarin.
 
-    :ivar nimi: sankarin nimi, kysytään käyttäjältä
-    :type nimi: str
-    
-    
-    Julkiset metodit
-        arvo_hurraus()
-    """
-    
-    
-    def __init__(self, nimi):
-        self.nimi = nimi
-        
-
-    
-
-    def arvo_hurraus(self):
-        """
-        Palauttaa satunnaisen hurraushuudahduksen.
-
-        :return: hurraava huudahdus
-        :rtype: str
-        """
-        HURRAUKSET = ["Jes!", "Let's Go1", "Hurraa!", "Jeee!", "Jippii!"]
-        return random.choice(HURRAUKSET)
 
         
 sankari = Sankari(input("Mikä on sankarimme nimi? "))
