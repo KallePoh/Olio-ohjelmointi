@@ -7,8 +7,7 @@ class Olento:
         self.rohkeus = random.randint(4, 8)
         self.katseen_voima = random.randint(2, 4)
     
-    def arvo_hurraus(self):
-        pass
+    
 
 """Palauttaa satunnaisen hurraushuudahduksen.
 
@@ -70,6 +69,8 @@ class Peikko(Olento):
     def arvo_hurraus(self):
         
         return self._arvo_sanat(self.RIEMUTAVUT, 8, " ", 0.7)
+
+    
 
 
 class Vuorenpeikko(Peikko):
