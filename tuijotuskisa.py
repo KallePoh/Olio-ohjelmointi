@@ -6,17 +6,17 @@ class Olento:
     def __init__(self):
         self.rohkeus = random.randint(4, 8)
         self.katseen_voima = random.randint(2, 4)
-
+    
     def arvo_hurraus(self):
         pass
 
-    """
-    Palauttaa satunnaisen hurraushuudahduksen.
+"""Palauttaa satunnaisen hurraushuudahduksen.
 
     :return: hurraava huudahdus
     :rtype: str
-    """
-    """
+        
+    
+    
     :ivar rohkeus: olennon rohkeus, arvotaan
     :type rohkeus: int
     :ivar katseen_voima: olennon katseen voimakkuus, arvotaan
@@ -68,11 +68,7 @@ class Peikko(Olento):
         return sanat
 
     def arvo_hurraus(self):
-        """Palauttaa satunnaisen hurraushuudahduksen.
-
-        :return: hurraava huudahdus
-        :rtype: str
-        """
+        
         return self._arvo_sanat(self.RIEMUTAVUT, 8, " ", 0.7)
 
 
@@ -117,7 +113,7 @@ class Sankari(Olento):
         :return: hurraava huudahdus
         :rtype: str
         """
-        HURRAUKSET = ["Jes!", "Let's Go1", "Hurraa!", "Jeee!", "Jippii!"]
+        HURRAUKSET = ["Jes!", "Let's Go!", "Hurraa!", "Jeee!", "Jippii!"]
         return random.choice(HURRAUKSET)
 
 def hurraa(olio):
