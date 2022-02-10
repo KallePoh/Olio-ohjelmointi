@@ -2,28 +2,46 @@ import random
 import time
 
 
-class Peikko:
+class Olento:
+    def __init__(self):
+        self.rohkeus = random.randint(4, 8)
+        self.katseen_voima = random.randint(2, 4)
+    
+    
+
+"""Palauttaa satunnaisen hurraushuudahduksen.
+
+    :return: hurraava huudahdus
+    :rtype: str
+        
+    
+    
+    :ivar rohkeus: olennon rohkeus, arvotaan
+    :type rohkeus: int
+    :ivar katseen_voima: olennon katseen voimakkuus, arvotaan
+    :type katseen_voima: int
+    """
+
+
+
+class Peikko(Olento):
     """Luokka, joka kuvaa Peikon.
 
     :ivar nimi: peikon nimi, arvotaan
     :type nimi: str
-    :ivar rohkeus: peikon rohkeus, arvotaan
-    :type rohkeus: int
-    :ivar katseen_voima: peikon katseen voimakkuus, arvotaan
-    :type katseen_voima: int
+    
     
     Julkiset metodit
-        arvo_hurraus()
+        arvo_hurraus()pl
     """
-
+    
     NIMITAVUT = ("Ur", "Gar", "Grah", "Gur", "Kan", "Kazah", "Bar", "Bazh", "Ragh", "Rudz")
     RIEMUTAVUT = ("Agh", "Ugh", "Ourgh", "Drar", "Brar", "Dza", "Gra", "Gur", "Rah", "Urgh", "Ra")
 
     def __init__(self):
         """Konstruktori."""
         self.nimi = self._arvo_sanat(self.NIMITAVUT, 3, "-")
-        self.rohkeus = random.randint(4, 8)
-        self.katseen_voima = random.randint(2, 4)
+        super().__init__()
 
     def _arvo_sanat(self, tavut, n, erotin, p=0.5):
         """Muodostaa satunnaisen tekstin annetuista tavuista.
@@ -49,16 +67,78 @@ class Peikko:
         return sanat
 
     def arvo_hurraus(self):
-        """Palauttaa satunnaisen hurraushuudahduksen.
+        
+        return self._arvo_sanat(self.RIEMUTAVUT, 8, " ", 0.7)
+
+    
+
+
+class Vuorenpeikko(Peikko):
+    NIMITAVUT = ("Dza", "Gra", "Gur", "Rah", "Urgh", "Ra")
+    RIEMUTAVUT = ("Ur", "Gar", "Grah", "Gur", "Kan",)
+    
+    def __init__(self):
+        self.nimi = self._arvo_sanat(self.RIEMUTAVUT, 3, "-")
+        super().__init__()
+        #Arvotaan Luolapeikon rohkeus
+        self.rohkeus = random.randint(2, 4)
+        #Arvotaan Luolapeikon katseen voima
+        self.katseen_voima = random.randint(1, 2)
+    
+    #Arvotaan Vuoripeikon hurraus
+    def arvo_hurraus(self):
+        
+        return self._arvo_sanat(self.NIMITAVUT, 8, " ", 0.7)
+    
+
+
+class Luolapeikko(Peikko):
+    NIMITAVUT = ("Agh", "Ugh", "Ourgh", "Drar", "Brar",)
+    RIEMUTAVUT = ("Kazah", "Bar", "Bazh", "Ragh", "Rudz")
+    
+   
+
+    def __init__(self):
+        self.nimi = self._arvo_sanat(self.RIEMUTAVUT, 3, "-")
+        super().__init__()
+        #Arvotaan Luolapeikon rohkeus
+        self.rohkeus = random.randint(5, 10)
+        #Arvotaan Luolapeikon katseen voima
+        self.katseen_voima = random.randint(3, 6)
+
+        # Arvotaan Luolapeikon hurraus
+    def arvo_hurraus(self):
+        return self._arvo_sanat(self.NIMITAVUT, 8, " ", 0.7)
+
+
+class Sankari(Olento):
+    """Luokka, joka kuvaa Sankarin.
+
+    :ivar nimi: sankarin nimi, kysytään käyttäjältä
+    :type nimi: str
+    
+    
+    Julkiset metodit
+        arvo_hurraus()
+    """
+    
+    
+    def __init__(self, nimi):
+        self.nimi = nimi
+        super().__init__()
+        
+
+    
+
+    def arvo_hurraus(self):
+        """
+        Palauttaa satunnaisen hurraushuudahduksen.
 
         :return: hurraava huudahdus
         :rtype: str
         """
-        return self._arvo_sanat(self.RIEMUTAVUT, 8, " ", 0.7)
-
-
-### Kirjoita luokka Sankari tähän.
-
+        HURRAUKSET = ["Jes!", "Let's Go!", "Hurraa!", "Jeee!", "Jippii!"]
+        return random.choice(HURRAUKSET)
 
 def hurraa(olio):
     """Tulostaa satunnaisen hurrauksen annetulle oliolle.
@@ -129,37 +209,7 @@ def taistele(vasen, oikea):
         return oikea
 
 
-class Sankari:
-    """Luokka, joka kuvaa Sankarin.
 
-    :ivar nimi: sankarin nimi, kysytään käyttäjältä
-    :type nimi: str
-    :ivar rohkeus: sankarin rohkeus, arvotaan
-    :type rohkeus: int
-    :ivar katseen_voima: sankarin katseen voimakkuus, arvotaan
-    :type katseen_voima: int
-    
-    Julkiset metodit
-        arvo_hurraus()
-    """
-    
-    
-    def __init__(self, nimi):
-        self.nimi = nimi
-        self.rohkeus = random.randint(4, 8)
-        self.katseen_voima = random.randint(2, 4)
-
-    
-
-    def arvo_hurraus(self):
-        """
-        Palauttaa satunnaisen hurraushuudahduksen.
-
-        :return: hurraava huudahdus
-        :rtype: str
-        """
-        HURRAUKSET = ["Jes!", "Let's Go1", "Hurraa!", "Jeee!", "Jippii!"]
-        return random.choice(HURRAUKSET)
 
         
 sankari = Sankari(input("Mikä on sankarimme nimi? "))
@@ -172,7 +222,16 @@ while sankari.rohkeus > 0:
     time.sleep(0.7)
 
     # Tulostetaan vastaan tulevan peikon tiedot.
-    peikko = Peikko()
+
+    """Arvotaan minkälainen peikko luodaan"""
+    peikko_valinta = random.randint(1, 3)
+    if peikko_valinta == 1:
+        peikko = Peikko()
+    elif peikko_valinta == 2:
+        peikko = Luolapeikko()
+    else:
+        peikko = Vuorenpeikko()
+    
     peikon_tiedot = peikko.nimi + " [" + str(peikko.rohkeus) + "]"
     print(f"Vastaan tulee hurja {peikon_tiedot}!")
     time.sleep(1)
