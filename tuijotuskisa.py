@@ -32,9 +32,9 @@ class Peikko(Olento):
     
     
     Julkiset metodit
-        arvo_hurraus()
+        arvo_hurraus()pl
     """
-
+    
     NIMITAVUT = ("Ur", "Gar", "Grah", "Gur", "Kan", "Kazah", "Bar", "Bazh", "Ragh", "Rudz")
     RIEMUTAVUT = ("Agh", "Ugh", "Ourgh", "Drar", "Brar", "Dza", "Gra", "Gur", "Rah", "Urgh", "Ra")
 
@@ -74,19 +74,42 @@ class Peikko(Olento):
 
 
 class Vuorenpeikko(Peikko):
-    VUORENPEIKKO_HUUDAHDUKSET = ("Dza", "Gra", "Gur", "Rah", "Urgh", "Ra")
-    VUORENPEIKKO_NIMET = ("Ur", "Gar", "Grah", "Gur", "Kan",)
-    def __init__(self):
-        super().__init__()
+    NIMITAVUT = ("Dza", "Gra", "Gur", "Rah", "Urgh", "Ra")
+    RIEMUTAVUT = ("Ur", "Gar", "Grah", "Gur", "Kan",)
     
+    def __init__(self):
+        self.nimi = self._arvo_sanat(self.RIEMUTAVUT, 3, "-")
+        super().__init__()
+        #Arvotaan Luolapeikon rohkeus
+        self.rohkeus = random.randint(2, 4)
+        #Arvotaan Luolapeikon katseen voima
+        self.katseen_voima = random.randint(1, 2)
+    
+    #Arvotaan Vuoripeikon hurraus
+    def arvo_hurraus(self):
+        
+        return self._arvo_sanat(self.NIMITAVUT, 8, " ", 0.7)
     
 
 
 class Luolapeikko(Peikko):
-    LUOLAPEIKKO_HUUDAHDUKSET = ("Agh", "Ugh", "Ourgh", "Drar", "Brar",)
-    LUOLAPEIKKO_NIMET = ("Kazah", "Bar", "Bazh", "Ragh", "Rudz")
+    NIMITAVUT = ("Agh", "Ugh", "Ourgh", "Drar", "Brar",)
+    RIEMUTAVUT = ("Kazah", "Bar", "Bazh", "Ragh", "Rudz")
+    
+   
+
     def __init__(self):
+        self.nimi = self._arvo_sanat(self.RIEMUTAVUT, 3, "-")
         super().__init__()
+        #Arvotaan Luolapeikon rohkeus
+        self.rohkeus = random.randint(5, 10)
+        #Arvotaan Luolapeikon katseen voima
+        self.katseen_voima = random.randint(3, 6)
+
+        # Arvotaan Luolapeikon hurraus
+    def arvo_hurraus(self):
+        return self._arvo_sanat(self.NIMITAVUT, 8, " ", 0.7)
+
 
 class Sankari(Olento):
     """Luokka, joka kuvaa Sankarin.
@@ -199,7 +222,16 @@ while sankari.rohkeus > 0:
     time.sleep(0.7)
 
     # Tulostetaan vastaan tulevan peikon tiedot.
-    peikko = Peikko()
+
+    """Arvotaan minkälainen peikko luodaan"""
+    peikko_valinta = random.randint(1, 3)
+    if peikko_valinta == 1:
+        peikko = Peikko()
+    elif peikko_valinta == 2:
+        peikko = Luolapeikko()
+    else:
+        peikko = Vuorenpeikko()
+    
     peikon_tiedot = peikko.nimi + " [" + str(peikko.rohkeus) + "]"
     print(f"Vastaan tulee hurja {peikon_tiedot}!")
     time.sleep(1)
