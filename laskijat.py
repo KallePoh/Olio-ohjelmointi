@@ -36,6 +36,15 @@ class Laskija:
 
 ### Lisää MonenLaskija ja argumenttien_tulostaja tähän.
 
+"""Tulostaa lauseen jossa on avainsana ja arvo
+:param kwargs: sanakirjan avain ja arvo
+:print: Lause missä kerrotaan argumentin arvo
+"""
+def argumenttien_tulostaja(**kwargs):
+    arvot = list(kwargs.values())
+    avainsanat = list(kwargs.keys())
+    for i in range(0, len(arvot)):
+        print(f'Argumentin "{avainsanat[i]}" arvo on {arvot[i]}')
 
 
 class MonenLaskija(Laskija):
@@ -89,6 +98,6 @@ print()
 print(ml.summaa(1, 2, 3, 4, 5, 6, 7))
 print(ml.kerro(1, 2, 3, 4, 5, 6 ,7))
 print()
-# argumenttien_tulostaja(eka=42, toka='foo', kolmas=[0, 1, 2])
+argumenttien_tulostaja(eka=42, toka='foo', kolmas=[0, 1, 2])
 print()
-# argumenttien_tulostaja(nimi='Tero', ika=41, kaupunki='Turku', oppilaitos='TAI')
+argumenttien_tulostaja(nimi='Tero', ika=41, kaupunki='Turku', oppilaitos='TAI')
