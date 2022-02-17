@@ -36,6 +36,8 @@ class Laskija:
 
 ### Lisää MonenLaskija ja argumenttien_tulostaja tähän.
 
+
+
 class MonenLaskija(Laskija):
     """Palauttaa kaikkien annettujen numeroitten summan
 
@@ -53,12 +55,12 @@ class MonenLaskija(Laskija):
         return(summa)
     
 
-    """Palauttaa kaikkien annettujen numeroitten summan
+    """Palauttaa kaikkien annettujen numeroitten tulon
 
 
     :param luvut: Listassa olevat luvut
     :type luvut: Union[int, float]
-    return: listan luvut lukujen summa 
+    return: listan luvut lukujen tulo 
     :rtype: Union[int, float]
     """
     
