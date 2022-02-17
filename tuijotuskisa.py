@@ -1,51 +1,49 @@
 import random
 import time
 
-
 class Olento:
-    def __init__(self):
-        self.rohkeus = random.randint(4, 8)
-        self.katseen_voima = random.randint(2, 4)
-    
-    
-
-"""Palauttaa satunnaisen hurraushuudahduksen.
-
-    :return: hurraava huudahdus
-    :rtype: str
-        
-    
-    
+    """Luokka, joka kuvaa Olennon.
+    :ivar nimi: olennon nimi, arvotaan
+    :type nimi: str
     :ivar rohkeus: olennon rohkeus, arvotaan
     :type rohkeus: int
     :ivar katseen_voima: olennon katseen voimakkuus, arvotaan
     :type katseen_voima: int
     """
+    def __init__(self, nimi, min_rohkeus = 1, min_katseen_voima = 1):
+        self.nimi = nimi
+        self.rohkeus = random.randint(min_rohkeus, min_rohkeus + 4)
+        self.katseen_voima = random.randint(min_katseen_voima, min_katseen_voima + 4)
 
-
+    def arvo_hurraus(self):
+        """Palauttaa satunnaisen hurraushuudahduksen.
+        :return: hurraava huudahdus
+        :rtype: str
+        """
+        pass
 
 class Peikko(Olento):
     """Luokka, joka kuvaa Peikon.
-
     :ivar nimi: peikon nimi, arvotaan
     :type nimi: str
-    
-    
+    :ivar rohkeus: peikon rohkeus, arvotaan
+    :type rohkeus: int
+    :ivar katseen_voima: peikon katseen voimakkuus, arvotaan
+    :type katseen_voima: int
     Julkiset metodit
-        arvo_hurraus()pl
+        arvo_hurraus()
     """
-    
+
     NIMITAVUT = ("Ur", "Gar", "Grah", "Gur", "Kan", "Kazah", "Bar", "Bazh", "Ragh", "Rudz")
     RIEMUTAVUT = ("Agh", "Ugh", "Ourgh", "Drar", "Brar", "Dza", "Gra", "Gur", "Rah", "Urgh", "Ra")
 
-    def __init__(self):
+    def __init__(self, min_rohkeus=2, min_katseen_voima=2):
         """Konstruktori."""
-        self.nimi = self._arvo_sanat(self.NIMITAVUT, 3, "-")
-        super().__init__()
+        nimi = self._arvo_sanat(self.NIMITAVUT, 3, "-")
+        super().__init__(nimi, min_rohkeus, min_katseen_voima)
 
     def _arvo_sanat(self, tavut, n, erotin, p=0.5):
         """Muodostaa satunnaisen tekstin annetuista tavuista.
-
         :param tavut: ne tavut, joita palautettava teksti voi sisältää
         :type tavut: Union[list[str], tuple[str]]
         :param n: mukaan poimittavien tavujen maksimimäärä
@@ -67,82 +65,76 @@ class Peikko(Olento):
         return sanat
 
     def arvo_hurraus(self):
-        
-        return self._arvo_sanat(self.RIEMUTAVUT, 8, " ", 0.7)
-
-    
-
-
-class Vuorenpeikko(Peikko):
-    NIMITAVUT = ("Dza", "Gra", "Gur", "Rah", "Urgh", "Ra")
-    RIEMUTAVUT = ("Ur", "Gar", "Grah", "Gur", "Kan",)
-    
-    def __init__(self):
-        self.nimi = self._arvo_sanat(self.RIEMUTAVUT, 3, "-")
-        super().__init__()
-        #Arvotaan Luolapeikon rohkeus
-        self.rohkeus = random.randint(2, 4)
-        #Arvotaan Luolapeikon katseen voima
-        self.katseen_voima = random.randint(1, 2)
-    
-    #Arvotaan Vuoripeikon hurraus
-    def arvo_hurraus(self):
-        
-        return self._arvo_sanat(self.NIMITAVUT, 8, " ", 0.7)
-    
-
-
-class Luolapeikko(Peikko):
-    NIMITAVUT = ("Agh", "Ugh", "Ourgh", "Drar", "Brar",)
-    RIEMUTAVUT = ("Kazah", "Bar", "Bazh", "Ragh", "Rudz")
-    
-   
-
-    def __init__(self):
-        self.nimi = self._arvo_sanat(self.RIEMUTAVUT, 3, "-")
-        super().__init__()
-        #Arvotaan Luolapeikon rohkeus
-        self.rohkeus = random.randint(5, 10)
-        #Arvotaan Luolapeikon katseen voima
-        self.katseen_voima = random.randint(3, 6)
-
-        # Arvotaan Luolapeikon hurraus
-    def arvo_hurraus(self):
-        return self._arvo_sanat(self.NIMITAVUT, 8, " ", 0.7)
-
-
-class Sankari(Olento):
-    """Luokka, joka kuvaa Sankarin.
-
-    :ivar nimi: sankarin nimi, kysytään käyttäjältä
-    :type nimi: str
-    
-    
-    Julkiset metodit
-        arvo_hurraus()
-    """
-    
-    
-    def __init__(self, nimi):
-        self.nimi = nimi
-        super().__init__()
-        
-
-    
-
-    def arvo_hurraus(self):
-        """
-        Palauttaa satunnaisen hurraushuudahduksen.
-
+        """Palauttaa satunnaisen hurraushuudahduksen.
         :return: hurraava huudahdus
         :rtype: str
         """
-        HURRAUKSET = ["Jes!", "Let's Go!", "Hurraa!", "Jeee!", "Jippii!"]
-        return random.choice(HURRAUKSET)
+        return self._arvo_sanat(self.RIEMUTAVUT, 8, " ", 0.7)
+
+class Vuorenpeikko(Peikko):
+    """Luokka, joka kuvaa Vuorenpeikon.
+    :ivar nimi: vuorenpeikon nimi, arvotaan
+    :type nimi: str
+    :ivar rohkeus: vuorenpeikon rohkeus, arvotaan
+    :type rohkeus: int
+    :ivar katseen_voima: vuorenpeikon katseen voimakkuus, arvotaan
+    :type katseen_voima: int
+    Julkiset metodit
+        arvo_hurraus()
+    """
+
+    NIMITAVUT = ("Dur", "Dar", "Drah", "Bur", "Gan", "Gazah", "Dar", "Gazh", "Gagh", "Gudz")
+    RIEMUTAVUT = ("Reygh", "Raygh", "Rurgh", "Mrar", "Drar", "Dza", "Dra", "Dur", "Rah", "Rargh", "Raa")
+
+    def __init__(self):
+        """Konstruktori."""
+        super().__init__(3, 6)
+
+
+class Luolapeikko(Peikko):
+    """Luokka, joka kuvaa Luolapeikon.
+    :ivar nimi: Luoolapeikon nimi, arvotaan
+    :type nimi: str
+    :ivar rohkeus: Luolapeikon rohkeus, arvotaan
+    :type rohkeus: int
+    :ivar katseen_voima: Luolapeikon katseen voimakkuus, arvotaan
+    :type katseen_voima: int
+    Julkiset metodit
+        arvo_hurraus()
+    """
+
+    NIMITAVUT = ("Bur", "Bar", "Drah", "Mur", "Dan", "Dazah", "Mar", "Dazh", "Dagh", "Budz")
+    RIEMUTAVUT = ("Egh", "Ogh", "Aurgh", "Frar", "Grar", "Bza", "Dra", "Bur", "Gah", "Argh", "Aa")
+
+    def __init__(self):
+        """Konstruktori."""
+        super().__init__(2, 4)
+
+class Sankari(Olento):
+    """Luokka, joka kuvaa Sankarin.
+    :ivar nimi: Sankarin nimi, käyttäjä päättää
+    :type nimi: str
+    :ivar rohkeus: Sankarin rohkeus, arvotaan
+    :type rohkeus: int
+    :ivar katseen_voima: Sankarin katseen voimakkuus, arvotaan
+    :type katseen_voima: int
+    Julkiset metodit
+        arvo_hurraus()
+    """
+    def __init__(self, nimi):
+        """Konstruktori."""
+        super().__init__(nimi, 4,6)
+
+    def arvo_hurraus(self):
+        """Palauttaa satunnaisen hurraushuudahduksen.
+        :return: hurraava huudahdus
+        :rtype: str
+        """
+        return random.choice(["Näin on!", "Kyllä!", "Jes!", "Juuh!", "Mennään!"])
+
 
 def hurraa(olio):
     """Tulostaa satunnaisen hurrauksen annetulle oliolle.
-
     :param olio: hurraava olio
     """
     print(f'{olio.nimi}: "{olio.arvo_hurraus()}!"')
@@ -150,7 +142,6 @@ def hurraa(olio):
 
 def tulosta_rapaytys(rapayttaja):
     """Tulostaa sopivan tekstin räpäyttävälle oliolle.
-
     :param rapayttaja: silmiään räpäyttävä olio
     """
     if rapayttaja:
@@ -164,7 +155,6 @@ def tulosta_rapaytys(rapayttaja):
 
 def tuijota(olio1, olio2):
     """Asettaa annetut oliot taistelemaan keskenään yhden kierroksen.
-
     :param vasen: ensimmäinen taisteleva olio
     :type vasen: Union[Sankari, Peikko]
     :param oikea: toinen taisteleva olio
@@ -191,7 +181,6 @@ def tuijota(olio1, olio2):
 
 def taistele(vasen, oikea):
     """Asettaa annetut oliot taistelemaan keskenään, kunnes toinen voittaa.
-
     :param vasen: ensimmäinen taisteleva olio
     :type vasen: Union[Sankari, Peikko]
     :param oikea: toinen taisteleva olio
@@ -209,9 +198,6 @@ def taistele(vasen, oikea):
         return oikea
 
 
-
-
-        
 sankari = Sankari(input("Mikä on sankarimme nimi? "))
 pelastetut = 0
 # Käydään tuijotuskisoja peikkoja vastaan, kunnes sankari karkaa
@@ -221,17 +207,10 @@ while sankari.rohkeus > 0:
     print(f"Sankarimme {sankarin_tiedot} kävelee kohti seikkailua.")
     time.sleep(0.7)
 
+    #Arvotaan vastaan tuleva peikko
+    peikot = [Luolapeikko(), Vuorenpeikko(), Peikko()]
+    peikko = random.choice(peikot)
     # Tulostetaan vastaan tulevan peikon tiedot.
-
-    """Arvotaan minkälainen peikko luodaan"""
-    peikko_valinta = random.randint(1, 3)
-    if peikko_valinta == 1:
-        peikko = Peikko()
-    elif peikko_valinta == 2:
-        peikko = Luolapeikko()
-    else:
-        peikko = Vuorenpeikko()
-    
     peikon_tiedot = peikko.nimi + " [" + str(peikko.rohkeus) + "]"
     print(f"Vastaan tulee hurja {peikon_tiedot}!")
     time.sleep(1)
