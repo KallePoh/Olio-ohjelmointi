@@ -6,7 +6,7 @@ class Laskija:
         kerro(Union[int, float], Union[int, float])
     """
 
-    def summaa(self, a, b):
+    def summaa(self, *luvut):
         """Palauttaa kahden luvun summan.
 
         :param a: summan ensimmäinen luku
@@ -16,9 +16,9 @@ class Laskija:
         :return: lukujen a ja b summa
         :rtype: Union[int, float]
         """
-        return sum([a, b])
+        return sum([luvut[0], luvut[1]])
 
-    def kerro(self, a, b):
+    def kerro(self, *luvut):
         """Palauttaa kahden luvun tulon.
 
         :param a: tulon ensimmäinen luku
@@ -29,12 +29,46 @@ class Laskija:
         :rtype: Union[int, float]
         """
         tulo = 1
-        for luku in [a, b]:
+        for luku in [luvut[0], luvut[1]]:
             tulo *= luku
         return tulo
 
 
 ### Lisää MonenLaskija ja argumenttien_tulostaja tähän.
+
+class MonenLaskija(Laskija):
+    """Palauttaa kaikkien annettujen numeroitten summan
+
+
+    :param luvut: Listassa olevat luvut
+    :type luvut: Union[int, float]
+    return: listan luvut lukujen summa 
+    :rtype: Union[int, float]
+    """
+    
+    def summaa(self, *luvut):
+        summa = 0
+        for number in luvut:
+            summa += number
+        return(summa)
+    
+
+    """Palauttaa kaikkien annettujen numeroitten summan
+
+
+    :param luvut: Listassa olevat luvut
+    :type luvut: Union[int, float]
+    return: listan luvut lukujen summa 
+    :rtype: Union[int, float]
+    """
+    
+    def kerro(self, *luvut):
+        tulo = 1
+        for number in luvut:
+            tulo = tulo * number
+        return(tulo)
+    
+
 
 
 
@@ -53,6 +87,6 @@ print()
 print(ml.summaa(1, 2, 3, 4, 5, 6, 7))
 print(ml.kerro(1, 2, 3, 4, 5, 6 ,7))
 print()
-argumenttien_tulostaja(eka=42, toka='foo', kolmas=[0, 1, 2])
+# argumenttien_tulostaja(eka=42, toka='foo', kolmas=[0, 1, 2])
 print()
-argumenttien_tulostaja(nimi='Tero', ika=41, kaupunki='Turku', oppilaitos='TAI')
+# argumenttien_tulostaja(nimi='Tero', ika=41, kaupunki='Turku', oppilaitos='TAI')
