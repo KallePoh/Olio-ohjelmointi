@@ -13,3 +13,5 @@ class Asiakas:
     def set_nimi(self, nimi):
         pass
     
+    def get_ika(self):
+        pass
