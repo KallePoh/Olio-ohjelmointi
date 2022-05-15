@@ -15,3 +15,6 @@ class Asiakas:
     
     def get_ika(self):
         pass
+
+    def set_ika(self, ika):
+        pass
