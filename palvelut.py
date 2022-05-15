@@ -4,4 +4,7 @@ class Asiakas:
     def _luo_nro(self):
         pass
 
+    def __init__(self, nimi, ika) :
+        pass
+
     
