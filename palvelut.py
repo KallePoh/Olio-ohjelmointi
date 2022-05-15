@@ -7,4 +7,7 @@ class Asiakas:
     def __init__(self, nimi, ika) :
         pass
 
+    def get_nimi(self, nimi):
+        pass
+
     
